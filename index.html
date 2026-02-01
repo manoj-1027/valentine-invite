@@ -8,18 +8,25 @@
     body {
       margin: 0;
       height: 100vh;
+
+      /* EXACT Northern Lights image from your repo */
       background:
-        linear-gradient(rgba(255,192,203,0.35), rgba(255,192,203,0.35)),
-        url("https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3");
+        linear-gradient(rgba(255,192,203,0.30), rgba(255,192,203,0.30)),
+        url("northern-lights.jpg.jpg");
+
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
+
       display: flex;
       justify-content: center;
       align-items: center;
+
       font-family: 'Comic Sans MS', cursive;
       overflow: hidden;
     }
 
+    /* Butterflies */
     .butterfly {
       position: absolute;
       font-size: 22px;
@@ -28,35 +35,37 @@
     }
 
     @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-25px); }
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-25px); }
       100% { transform: translateY(0); }
     }
 
+    /* Valentine card */
     .card {
       background: #fff0f5;
-      padding: 30px;
-      border-radius: 25px;
+      padding: 32px;
+      border-radius: 28px;
       text-align: center;
-      box-shadow: 0 0 25px rgba(255,105,180,0.5);
+      box-shadow: 0 0 30px rgba(255,105,180,0.55);
       max-width: 360px;
       position: relative;
       z-index: 10;
     }
 
     .cupid {
-      font-size: 55px;
-      margin-bottom: 10px;
+      font-size: 56px;
+      margin-bottom: 12px;
     }
 
     h1 {
       color: #ff4d6d;
       font-size: 24px;
+      line-height: 1.4;
     }
 
     button {
-      padding: 12px 22px;
-      margin: 10px;
+      padding: 12px 24px;
+      margin: 12px;
       border: none;
       border-radius: 25px;
       font-size: 16px;
@@ -68,6 +77,7 @@
       color: white;
     }
 
+    /* NO button is movable */
     .no {
       background-color: #e0e0e0;
       position: absolute;
@@ -77,32 +87,39 @@
 
 <body>
 
-  <!-- Butterflies -->
-  <div class="butterfly" style="top:10%; left:20%">🦋</div>
-  <div class="butterfly" style="top:30%; left:80%">🦋</div>
-  <div class="butterfly" style="top:70%; left:15%">🦋</div>
+  <!-- Floating butterflies -->
+  <div class="butterfly" style="top:12%; left:18%">🦋</div>
+  <div class="butterfly" style="top:28%; left:80%">🦋</div>
+  <div class="butterfly" style="top:70%; left:20%">🦋</div>
   <div class="butterfly" style="top:65%; left:75%">🦋</div>
   <div class="butterfly" style="top:40%; left:50%">🦋</div>
 
   <!-- Valentine Card -->
   <div class="card">
     <div class="cupid">💘</div>
-    <h1>Madhu,<br>Will you be my Valentine?</h1>
+
+    <h1>
+      Madhu,<br>
+      Will you be my Valentine?
+    </h1>
 
     <button class="yes" onclick="yesClick()">Yes</button>
     <button class="no" id="noBtn">No</button>
   </div>
 
   <script>
+    /* YES click */
     function yesClick() {
       document.body.innerHTML =
         "<h1 style='color:#ff4d6d;text-align:center;'>I knew it 💖<br>You are my forever ✨</h1>";
     }
 
+    /* NO button escape logic */
     const noBtn = document.getElementById("noBtn");
 
     noBtn.addEventListener("mouseover", () => {
-      const padding = 50;
+      const padding = 40;
+
       const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
       const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
 
