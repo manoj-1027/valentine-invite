@@ -8,12 +8,9 @@
     body {
       margin: 0;
       height: 100vh;
-
-      /* EXACT Northern Lights image from your repo */
       background:
         linear-gradient(rgba(255,192,203,0.30), rgba(255,192,203,0.30)),
         url("northern-lights.jpg.jpg");
-
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -29,74 +26,77 @@
     /* Butterflies */
     .butterfly {
       position: absolute;
-      font-size: 22px;
+      font-size: 20px;
       animation: float 6s ease-in-out infinite;
       pointer-events: none;
     }
 
     @keyframes float {
-      0%   { transform: translateY(0); }
-      50%  { transform: translateY(-25px); }
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
       100% { transform: translateY(0); }
     }
 
-    /* Valentine card */
+    /* Card */
     .card {
       background: #fff0f5;
-      padding: 32px;
+      padding: 30px;
       border-radius: 28px;
       text-align: center;
       box-shadow: 0 0 30px rgba(255,105,180,0.55);
-      max-width: 360px;
-      position: relative;
-      z-index: 10;
+      width: 360px;
+      height: 260px;
+      position: relative; /* IMPORTANT */
     }
 
-    .cupid {
-      font-size: 56px;
-      margin-bottom: 12px;
+    .cupid-img {
+      width: 70px;
+      margin-bottom: 8px;
     }
 
     h1 {
       color: #ff4d6d;
-      font-size: 24px;
+      font-size: 22px;
       line-height: 1.4;
+      margin-bottom: 15px;
     }
 
     button {
-      padding: 12px 24px;
-      margin: 12px;
+      padding: 10px 22px;
       border: none;
-      border-radius: 25px;
-      font-size: 16px;
+      border-radius: 22px;
+      font-size: 15px;
       cursor: pointer;
     }
 
     .yes {
       background-color: #ff4d6d;
       color: white;
+      position: relative;
     }
 
-    /* NO button is movable */
     .no {
       background-color: #e0e0e0;
       position: absolute;
+      right: 40px;
+      bottom: 30px;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Floating butterflies -->
-  <div class="butterfly" style="top:12%; left:18%">🦋</div>
-  <div class="butterfly" style="top:28%; left:80%">🦋</div>
-  <div class="butterfly" style="top:70%; left:20%">🦋</div>
+  <!-- Butterflies -->
+  <div class="butterfly" style="top:15%; left:20%">🦋</div>
+  <div class="butterfly" style="top:35%; left:80%">🦋</div>
+  <div class="butterfly" style="top:70%; left:25%">🦋</div>
   <div class="butterfly" style="top:65%; left:75%">🦋</div>
-  <div class="butterfly" style="top:40%; left:50%">🦋</div>
 
   <!-- Valentine Card -->
-  <div class="card">
-    <div class="cupid">💘</div>
+  <div class="card" id="card">
+    <img class="cupid-img"
+         src="https://pngimg.com/uploads/cupid/cupid_PNG35.png"
+         alt="Cupid">
 
     <h1>
       Madhu,<br>
@@ -108,20 +108,25 @@
   </div>
 
   <script>
-    /* YES click */
     function yesClick() {
       document.body.innerHTML =
-        "<h1 style='color:#ff4d6d;text-align:center;'>I knew it 💖<br>You are my forever ✨</h1>";
+        "<h1 style='color:#ff4d6d;text-align:center;'>I knew it😚<br>that's y the no button is away😉</h1>";
     }
 
-    /* NO button escape logic */
     const noBtn = document.getElementById("noBtn");
+    const card = document.getElementById("card");
 
-    noBtn.addEventListener("mouseover", () => {
-      const padding = 40;
+    noBtn.addEventListener("mouseenter", () => {
+      const cardRect = card.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
 
-      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
-      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
+      const padding = 20;
+
+      const maxX = card.clientWidth - btnRect.width - padding;
+      const maxY = card.clientHeight - btnRect.height - padding;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
 
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
