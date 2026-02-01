@@ -9,8 +9,8 @@
       margin: 0;
       height: 100vh;
       background:
-        linear-gradient(rgba(255,182,193,0.6), rgba(255,182,193,0.6)),
-        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+        linear-gradient(rgba(255,192,203,0.35), rgba(255,192,203,0.35)),
+        url("https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3");
       background-size: cover;
       background-position: center;
       display: flex;
@@ -24,6 +24,7 @@
       position: absolute;
       font-size: 22px;
       animation: float 6s ease-in-out infinite;
+      pointer-events: none;
     }
 
     @keyframes float {
@@ -38,8 +39,9 @@
       border-radius: 25px;
       text-align: center;
       box-shadow: 0 0 25px rgba(255,105,180,0.5);
-      max-width: 350px;
+      max-width: 360px;
       position: relative;
+      z-index: 10;
     }
 
     .cupid {
@@ -68,6 +70,7 @@
 
     .no {
       background-color: #e0e0e0;
+      position: absolute;
     }
   </style>
 </head>
@@ -79,14 +82,15 @@
   <div class="butterfly" style="top:30%; left:80%">🦋</div>
   <div class="butterfly" style="top:70%; left:15%">🦋</div>
   <div class="butterfly" style="top:65%; left:75%">🦋</div>
+  <div class="butterfly" style="top:40%; left:50%">🦋</div>
 
   <!-- Valentine Card -->
   <div class="card">
     <div class="cupid">💘</div>
-    <h1>madhu,<br>Will you be my Valentine?</h1>
+    <h1>Madhu,<br>Will you be my Valentine?</h1>
 
     <button class="yes" onclick="yesClick()">Yes</button>
-    <button class="no" onclick="alert('No is not allowed 😌')">No</button>
+    <button class="no" id="noBtn">No</button>
   </div>
 
   <script>
@@ -94,6 +98,17 @@
       document.body.innerHTML =
         "<h1 style='color:#ff4d6d;text-align:center;'>I knew it 💖<br>You are my forever ✨</h1>";
     }
+
+    const noBtn = document.getElementById("noBtn");
+
+    noBtn.addEventListener("mouseover", () => {
+      const padding = 50;
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
   </script>
 
 </body>
